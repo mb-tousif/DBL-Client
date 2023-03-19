@@ -3,8 +3,8 @@ import leftImage from "../../Assets/signup.jpg";
 
 export default function Register() {
   return (
-    <div className="container pt-[120px] mx-auto">
-      <div className="flex justify-center px-6 my-12">
+    <div className="pt-[140px] pb-6 mx-auto bg-[#3e3e3ee7]">
+      <div className="flex justify-center px-6">
         <div className="w-full xl:w-3/4 lg:w-11/12 flex">
           <div
             className="w-full h-auto bg-gray-400 hidden lg:block lg:w-5/12 bg-cover rounded-l-lg"

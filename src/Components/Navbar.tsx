@@ -26,9 +26,7 @@ export default function Navbar() {
     }
   }, [])
 
-  //  MOSUSE HOVER NEVBAR STYLE CAHNGE 
   const [hoverHide, setHoverHide] = useState(false)
-  // console.log(hoverHide)
 
   const handleMouseEnter = () => {
     setHoverHide(true);
