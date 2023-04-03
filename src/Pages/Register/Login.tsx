@@ -1,7 +1,19 @@
 import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { Link } from "react-router-dom";
 
+interface IFormInput {
+  email: string;
+  password: string;
+}
+
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInput>();
+  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data);
   return (
     <div className="pt-[120px] bg-[#3e3e3ee7]">
       <div className="py-6 flex flex-col justify-center sm:py-12">
@@ -15,11 +27,18 @@ export default function Login() {
                 </h1>
               </div>
               <div className="divide-y divide-gray-200">
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+                >
                   <div className="relative">
                     <input
-                      name="email"
-                      type="text"
+                      type="email"
+                      {...register("email", {
+                        required: {
+                          value: true,
+                          message: "Email is required",
+                        }})}
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-green-600"
                       placeholder="Email address"
                     />
@@ -29,11 +48,26 @@ export default function Login() {
                     >
                       Email Address
                     </label>
+                    {errors.email?.type === "required" && (
+                      <span className="text-red-600">
+                        {errors.email.message}
+                      </span>
+                    )}
                   </div>
                   <div className="relative">
                     <input
-                      name="password"
                       type="password"
+                      {...register("password", {
+                        required: {
+                          value: true,
+                          message: "Password is required!",
+                        },
+                        pattern: {
+                          value:
+                            /^(?=.*[a-z]{3,})(?=.*[A-Z])(?=.*\d)(?=.*[^\w\d])(.{6,})$/,
+                          message: "Password is not valid!",
+                        },
+                      })}
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-green-600"
                       placeholder="Password"
                     />
@@ -43,9 +77,25 @@ export default function Login() {
                     >
                       Password
                     </label>
+                    {errors.password?.type === "required" && (
+                      <span className="text-red-600">
+                        {errors.password.message}
+                      </span>
+                    )}
+                    {errors.password?.type === "pattern" && (
+                      <span className="text-red-600">
+                        {errors.password.message}
+                      </span>
+                    )}
                   </div>
-                  <div className="relative">
-                    <button className="bg-gradient-to-r from-[#0D1519] to-[#03A776] text-white rounded-md px-2 py-1">
+                  <div className="mb-2 text-sm">
+                    <Link to={"#/"}>Forgot Password?</Link>
+                  </div>
+                  <div className="relative mx-auto">
+                    <button
+                      type="submit"
+                      className="bg-gradient-to-r from-[#0D1519] to-[#03A776] text-white md:w-32 rounded-md px-2 py-1"
+                    >
                       Submit
                     </button>
                   </div>
@@ -60,7 +110,7 @@ export default function Login() {
                       </Link>
                     </p>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
