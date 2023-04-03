@@ -49,7 +49,7 @@ export default function Login() {
                       Email Address
                     </label>
                     {errors.email?.type === "required" && (
-                      <span className="text-red-600">
+                      <span className="text-red-600 text-xs">
                         {errors.email.message}
                       </span>
                     )}
@@ -78,12 +78,12 @@ export default function Login() {
                       Password
                     </label>
                     {errors.password?.type === "required" && (
-                      <span className="text-red-600">
+                      <span className="text-red-600 text-xs">
                         {errors.password.message}
                       </span>
                     )}
                     {errors.password?.type === "pattern" && (
-                      <span className="text-red-600">
+                      <span className="text-red-600 text-xs">
                         {errors.password.message}
                       </span>
                     )}
