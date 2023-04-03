@@ -18,7 +18,7 @@
     z-index: -1;
 }
 
-.btun {
+.btnContainer {
     border-radius: 20px;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -31,14 +31,14 @@
     -o-transition: all linear 0.4s;
 }
 
-.btun:hover {
+.btnContainer:hover {
     background: transparent;
     border: 2px solid #03A776 ;
     cursor:pointer;
 }
 /* =================== navbar fixed =========== */
 
-.fixeds {
+.position {
     position: fixed;
     width: 100%;
     top: 0;

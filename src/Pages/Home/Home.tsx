@@ -12,7 +12,7 @@ export default function Home() {
               survived not only five centuries, but also the leap into
               electronic
             </p>
-            <div className="btun mt-10  w-[150px] text-center py-3 text-white bg-[#03A776] ">
+            <div className="btnContainer mt-10  w-[150px] text-center py-3 text-white bg-[#03A776] ">
               <button> Read Bank</button>
             </div>
           </div>
