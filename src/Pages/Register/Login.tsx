@@ -38,7 +38,8 @@ export default function Login() {
                         required: {
                           value: true,
                           message: "Email is required",
-                        }})}
+                        },
+                      })}
                       className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-green-600"
                       placeholder="Email address"
                     />
@@ -88,10 +89,15 @@ export default function Login() {
                       </span>
                     )}
                   </div>
-                  <div className="mb-2 text-sm">
-                    <Link to={"#/"}>Forgot Password?</Link>
+                  <div className="relative text-center">
+                    <Link
+                      className="inline-block text-sm md:text-base hover:text-[#03A776] text-[#0D1519]"
+                      to={"#/"}
+                    >
+                      Forgot Password?
+                    </Link>
                   </div>
-                  <div className="relative mx-auto">
+                  <div className="relative flex justify-center">
                     <button
                       type="submit"
                       className="bg-gradient-to-r from-[#0D1519] to-[#03A776] text-white md:w-32 rounded-md px-2 py-1"
@@ -99,7 +105,7 @@ export default function Login() {
                       Submit
                     </button>
                   </div>
-                  <div className="relative">
+                  <div className="relative text-center">
                     <p className="text-sm text-gray-500">
                       Don't have an account?
                       <Link

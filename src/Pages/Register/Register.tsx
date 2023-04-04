@@ -161,14 +161,6 @@ export default function Register() {
               <hr className="mb-6 border-t" />
               <div className="text-center">
                 <a
-                  className="inline-block text-sm md:text-base align-baseline hover:text-[#03A776] text-[#0D1519]"
-                  href="#!"
-                >
-                  Forgot Password?
-                </a>
-              </div>
-              <div className="text-center">
-                <a
                   className="inline-block text-sm md:text-base text-[#0D1519] hover:text-[#03A776] align-baseline"
                   href="/login"
                 >
