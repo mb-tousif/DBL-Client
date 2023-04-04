@@ -1,7 +1,24 @@
 import React from "react";
 import leftImage from "../../Assets/signup.jpg";
+import { SubmitHandler, useForm } from "react-hook-form";
+import GenerateOTP from "../../Utilities/GenerateOTP";
+
+interface IFormData {
+  fullName: string;
+  NID: string;
+  email: string;
+  DOB: string;
+  role: string;
+  password: string;
+  cell: string;
+  imgUrl: string;
+  address: string;
+}
 
 export default function Register() {
+  const { register, handleSubmit, formState: { errors }} = useForm<IFormData>();
+  const onSubmit: SubmitHandler<IFormData> = (data) => console.log(data, {OTP: GenerateOTP()});
+
   return (
     <div className="pt-[140px] pb-6 mx-auto bg-[#3e3e3ee7]">
       <div className="flex justify-center px-6">
@@ -16,7 +33,7 @@ export default function Register() {
             <h3 className="pt-4 text-2xl text-[#03A776] font-bold text-center">
               Create an Account!
             </h3>
-            <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+            <form onSubmit={handleSubmit(onSubmit)} className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
               <div className="mb-4 md:flex md:justify-between">
                 <div className="mb-4 md:mr-2 md:mb-0">
                   <label
@@ -84,6 +101,7 @@ export default function Register() {
                     className="w-full h-8 text-center bg-[#666666e7] text-gray-50 rounded-lg text-sm"
                   >
                     <option value="">--Select User--</option>
+                    <option value="Guest">Guest</option>
                     <option value="A/C Holder">A/C Holder</option>
                     <option value="Cashier">Cashier</option>
                     <option value="Admin">Admin</option>
@@ -153,7 +171,7 @@ export default function Register() {
               <div className="mb-6 text-center">
                 <button
                   className="w-full px-4 py-2 font-bold text-white bg-gradient-to-r from-[#03A776] to-[#0D1519] rounded-full focus:outline-none focus:shadow-outline"
-                  type="button"
+                  type="submit"
                 >
                   Register Account
                 </button>
