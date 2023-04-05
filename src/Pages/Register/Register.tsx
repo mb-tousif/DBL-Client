@@ -1,7 +1,6 @@
 import React from "react";
 import leftImage from "../../Assets/signup.jpg";
 import { SubmitHandler, useForm } from "react-hook-form";
-import GenerateOTP from "../../Utilities/GenerateOTP";
 
 interface IFormData {
   fullName: string;
@@ -17,7 +16,7 @@ interface IFormData {
 
 export default function Register() {
   const { register, handleSubmit, formState: { errors }} = useForm<IFormData>();
-  const onSubmit: SubmitHandler<IFormData> = (data) => console.log(data, {OTP: GenerateOTP()});
+  const onSubmit: SubmitHandler<IFormData> = (data) => console.log(data);
 
   return (
     <div className="pt-[140px] pb-6 mx-auto bg-[#3e3e3ee7]">
