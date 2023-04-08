@@ -8,6 +8,7 @@ interface IFormData {
   email: string;
   DOB: string;
   role: string;
+  gender: string;
   password: string;
   cell: string;
   imgUrl: string;
@@ -77,6 +78,50 @@ export default function Register() {
                   placeholder="Email"
                 />
               </div>
+              <div className="mb-6">
+                <label className="inline-block mb-2 mr-2 text-gray-700">
+                  Gender:
+                </label>
+                <input
+                  placeholder="Male"
+                  {...register("gender", { required: true })}
+                  type="radio"
+                  value="Male"
+                />
+                <label
+                  htmlFor="male"
+                  className="inline-block mb-2 m-2 text-gray-700"
+                >
+                  Male
+                </label>
+                <input
+                  {...register("gender", { required: true })}
+                  type="radio"
+                  value="Female"
+                />
+                <label
+                  htmlFor="female"
+                  className="inline-block mb-2 m-2 text-gray-700"
+                >
+                  Female
+                </label>
+                <input
+                  {...register("gender", { required: true })}
+                  type="radio"
+                  value="Others"
+                />
+                <label
+                  htmlFor="others"
+                  className="inline-block mb-2 m-2 text-gray-700"
+                >
+                  Others
+                </label>
+                {errors.gender && (
+                  <p className="text-rose-600 text-center text-sm">
+                    Select your gender.
+                  </p>
+                )}
+              </div>
               <div className="sm:flex justify-between">
               <div className="mb-4">
                 <label
@@ -92,6 +137,7 @@ export default function Register() {
                   placeholder="Enter Your DOB"
                 />
               </div>
+              
               <div className="mb-6">
                   <label className="inline-block mb-2 text-sm font-bold text-gray-700">
                     User Role
