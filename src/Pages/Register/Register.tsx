@@ -74,7 +74,7 @@ export default function Register() {
                     placeholder="Enter Your NID"
                   />
                   {errors.NID && (
-                    <p className="text-rose-600 text-center">
+                    <p className="text-rose-600 text-center text-sm">
                       NID is required.
                     </p>
                   )}
@@ -171,7 +171,7 @@ export default function Register() {
                     placeholder="Enter Your DOB"
                   />
                   {errors.DOB && (
-                    <p className="text-rose-600 text-center">
+                    <p className="text-rose-600 text-center text-sm">
                       DOB is required.
                     </p>
                   )}
@@ -193,7 +193,7 @@ export default function Register() {
                     <option value="Manager">Manager</option>
                   </select>
                   {errors.role && (
-                    <p className="text-rose-600 text-center">
+                    <p className="text-rose-600 text-center text-sm">
                       User role is required.
                     </p>
                   )}
@@ -271,7 +271,7 @@ export default function Register() {
                   />
                 </label>
                 {errors.imgUrl && (
-                  <p className="text-rose-600 text-center">
+                  <p className="text-rose-600 text-center text-sm">
                     Upload your profile picture.
                   </p>
                 )}
