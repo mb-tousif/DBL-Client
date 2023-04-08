@@ -1,4 +1,3 @@
-import React from "react";
 import leftImage from "../../Assets/signup.jpg";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -16,7 +15,11 @@ interface IFormData {
 }
 
 export default function Register() {
-  const { register, handleSubmit, formState: { errors }} = useForm<IFormData>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormData>();
   const onSubmit: SubmitHandler<IFormData> = (data) => console.log(data);
 
   return (
@@ -33,7 +36,10 @@ export default function Register() {
             <h3 className="pt-4 text-2xl text-[#03A776] font-bold text-center">
               Create an Account!
             </h3>
-            <form onSubmit={handleSubmit(onSubmit)} className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="px-8 pt-6 pb-8 mb-4 bg-white rounded"
+            >
               <div className="mb-4 md:flex md:justify-between">
                 <div className="mb-4 md:mr-2 md:mb-0">
                   <label
@@ -44,10 +50,15 @@ export default function Register() {
                   </label>
                   <input
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    name="fullName"
+                    {...register("fullName", { required: true })}
                     type="text"
                     placeholder="Enter Your Name"
                   />
+                  {errors.fullName && (
+                    <p className="text-rose-600 text-center text-sm">
+                      Full name is required.
+                    </p>
+                  )}
                 </div>
                 <div className="md:ml-2">
                   <label
@@ -58,10 +69,15 @@ export default function Register() {
                   </label>
                   <input
                     className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    name="NID"
+                    {...register("NID", { required: true })}
                     type="text"
                     placeholder="Enter Your NID"
                   />
+                  {errors.NID && (
+                    <p className="text-rose-600 text-center">
+                      NID is required.
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="mb-4">
@@ -73,17 +89,35 @@ export default function Register() {
                 </label>
                 <input
                   className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                  id="email"
+                  {...register("email", {
+                    pattern: {
+                      value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                      message: "Provide a valid Email",
+                    },
+                    required: {
+                      value: true,
+                      message: "Email is required",
+                    },
+                  })}
                   type="email"
                   placeholder="Email"
                 />
+                {errors.email?.type === "pattern" && (
+                  <p className="text-rose-600 text-center text-sm">
+                    {errors.email.message}
+                  </p>
+                )}
+                {errors.email?.type === "required" && (
+                  <p className="text-rose-600 text-center text-sm">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div className="mb-6">
                 <label className="inline-block mb-2 mr-2 text-gray-700">
                   Gender:
                 </label>
                 <input
-                  placeholder="Male"
                   {...register("gender", { required: true })}
                   type="radio"
                   value="Male"
@@ -123,27 +157,33 @@ export default function Register() {
                 )}
               </div>
               <div className="sm:flex justify-between">
-              <div className="mb-4">
-                <label
-                  className="block mb-2 text-sm font-bold text-gray-700"
-                  htmlFor="DOB"
-                >
-                  DOB
-                </label>
-                <input
-                  className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                  id="DOB"
-                  type="date"
-                  placeholder="Enter Your DOB"
-                />
-              </div>
-              
-              <div className="mb-6">
+                <div className="mb-4">
+                  <label
+                    className="block mb-2 text-sm font-bold text-gray-700"
+                    htmlFor="DOB"
+                  >
+                    DOB
+                  </label>
+                  <input
+                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+                    {...register("DOB", { required: true })}
+                    type="date"
+                    placeholder="Enter Your DOB"
+                  />
+                  {errors.DOB && (
+                    <p className="text-rose-600 text-center">
+                      DOB is required.
+                    </p>
+                  )}
+                </div>
+
+                <div className="mb-6">
                   <label className="inline-block mb-2 text-sm font-bold text-gray-700">
                     User Role
                   </label>
                   <select
                     className="w-full h-8 text-center bg-[#666666e7] text-gray-50 rounded-lg text-sm"
+                    {...register("role", { required: true })}
                   >
                     <option value="">--Select User--</option>
                     <option value="Guest">Guest</option>
@@ -152,7 +192,12 @@ export default function Register() {
                     <option value="Admin">Admin</option>
                     <option value="Manager">Manager</option>
                   </select>
-              </div>
+                  {errors.role && (
+                    <p className="text-rose-600 text-center">
+                      User role is required.
+                    </p>
+                  )}
+                </div>
               </div>
               <div className="mb-4 md:flex md:justify-between">
                 <div className="mb-4 md:mr-2 md:mb-0">
@@ -164,10 +209,29 @@ export default function Register() {
                   </label>
                   <input
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    id="password"
+                    {...register("password", {
+                      minLength: {
+                        value: 6,
+                        message: "Password min-length six characters",
+                      },
+                      required: {
+                        value: true,
+                        message: "Password is required",
+                      },
+                    })}
                     type="password"
                     placeholder="******************"
                   />
+                  {errors.password?.type === "minLength" && (
+                    <p className="text-rose-600 text-center text-sm">
+                      {errors.password.message}
+                    </p>
+                  )}
+                  {errors.password?.type === "required" && (
+                    <p className="text-rose-600 text-center text-sm">
+                      {errors.password.message}
+                    </p>
+                  )}
                 </div>
                 <div className="md:ml-2">
                   <label
@@ -178,10 +242,15 @@ export default function Register() {
                   </label>
                   <input
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    name="phoneNumber"
+                    {...register("cell", { required: true })}
                     type="cell"
                     placeholder="88012 345 6789"
                   />
+                  {errors.cell && (
+                    <p className="text-rose-600 text-center text-sm">
+                      Phone Number is required.
+                    </p>
+                  )}
                 </div>
               </div>
               <div className="mb-4">
@@ -194,16 +263,23 @@ export default function Register() {
                   >
                     <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                   </svg>
-                  <span className="mt-2 text-base">
-                  Upload Your Photo
-                  </span>
-                  <input type="file" className="hidden" />
+                  <span className="mt-2 text-base">Upload Your Photo</span>
+                  <input
+                    type="file"
+                    className="hidden"
+                    {...register("imgUrl", { required: true })}
+                  />
                 </label>
+                {errors.imgUrl && (
+                  <p className="text-rose-600 text-center">
+                    Upload your profile picture.
+                  </p>
+                )}
               </div>
               <div className="mb-4">
                 <label
                   className="block mb-2 text-sm font-bold text-gray-700"
-                  htmlFor="email"
+                  htmlFor="address"
                 >
                   Address
                 </label>
@@ -211,7 +287,13 @@ export default function Register() {
                   className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                   rows={6}
                   placeholder="Enter Your Address"
+                  {...register("address", { required: true })}
                 />
+                {errors.address && (
+                  <p className="text-rose-600 text-center text-sm">
+                    Address is required.
+                  </p>
+                )}
               </div>
               <div className="mb-6 text-center">
                 <button
