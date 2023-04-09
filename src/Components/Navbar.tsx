@@ -91,10 +91,10 @@ export default function Navbar() {
                   Dashboard
                 </Link>
                 <Link
-                  to=""
+                  to="/blogs"
                   className="text-[#0D1519] px-3 justify-end rounded-md link text-base md:text-[15px] font-medium"
                 >
-                  En
+                  Blogs
                 </Link>
                 <Link
                   to="/login"
@@ -103,9 +103,7 @@ export default function Navbar() {
                   Login
                 </Link>
               </div>
-
             </div>
-
             <div className={`style-2 flex-none ${hoverHide && 'nav-Hide'} w-[4%] py-4 nav-border-right ${show && 'nav-border-right-none'}`}></div>
           </div>
           <div onClick={() => setOpen(!open)} className="-mr-2 flex sm:hidden">
@@ -134,16 +132,28 @@ export default function Navbar() {
             About
           </Link>
           <Link
-            to="/courses"
+            to="/carriers"
             className="block px-3 py-2 rounded-md text-base font-medium"
           >
-            Courses
+            Carriers
+          </Link>
+          <Link
+            to="/dashboard"
+            className="block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Dashboard
           </Link>
           <Link
             to="/blogs"
             className="block px-3 py-2 rounded-md text-base font-medium"
           >
             Blogs
+          </Link>
+          <Link
+            to="/login"
+            className="block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Login
           </Link>
         </div>
         </div>
