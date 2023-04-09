@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu } from "react-icons/gi";
 import { GrTwitter } from "react-icons/gr";
-import { AiOutlineInstagram, AiOutlineLinkedin, AiOutlineYoutube } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineInstagram, AiOutlineLinkedin, AiOutlineYoutube } from "react-icons/ai";
 import '../Pages/Home/home.css'
 
 export default function Navbar() {
-
-  // RESPONSIVE NAVBAR USING TOGGALE
-  // const [open, setOpen] = useState(false);
-  // NAVBAR SCROLL UP AND DOWN
+  const [open, setOpen] = useState(false);
   const [show, setShow] = useState(false)
   const controlNavbar = () => {
     if (window.scrollY > 100) {
@@ -111,13 +108,45 @@ export default function Navbar() {
 
             <div className={`style-2 flex-none ${hoverHide && 'nav-Hide'} w-[4%] py-4 nav-border-right ${show && 'nav-border-right-none'}`}></div>
           </div>
-          {/* <div onClick={() => setOpen(!open)} className="-mr-2 flex sm:hidden">
+          <div onClick={() => setOpen(!open)} className="-mr-2 flex sm:hidden">
             {open ? (
               <AiOutlineClose className="w-8 h-8 text-gray-50" />
             ) : (
               <GiHamburgerMenu className="w-8 h-8 text-gray-50" />
             )}
-          </div> */}
+          </div>
+          <div
+        className={`${
+          open ? "block" : "hidden"
+        } absolute z-20 bg-[#232274f9] w-full md:hidden opacity-90`}
+      >
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 translate ease-in-out duration-300">
+          <Link
+            to="/"
+            className="block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Home
+          </Link>
+          <Link
+            to="/about"
+            className="block px-3 py-2 rounded-md text-base font-medium"
+          >
+            About
+          </Link>
+          <Link
+            to="/courses"
+            className="block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Courses
+          </Link>
+          <Link
+            to="/blogs"
+            className="block px-3 py-2 rounded-md text-base font-medium"
+          >
+            Blogs
+          </Link>
+        </div>
+        </div>
         </div>
       </div>
     </nav>
