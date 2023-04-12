@@ -1,7 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    counterReducer: counterReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -12,3 +14,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+function counterReducer(state: unknown, action: Action): unknown {
+  throw new Error('Function not implemented.');
+}
+
