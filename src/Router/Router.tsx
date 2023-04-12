@@ -9,6 +9,7 @@ import DashboardLayout from "../Layout/DashboardLayout";
 import MoneyTransfer from "../Pages/Dashboard/MoneyTransfer";
 import Carriers from "../Pages/Carriers/Carriers";
 import Page404 from "../Components/Page404";
+import Blogs from "../Pages/Blogs/Blogs";
 
 const router = createBrowserRouter([
     {
@@ -25,12 +26,16 @@ const router = createBrowserRouter([
                 element: <About/>
             },
             {
-                path: '/login',
-                element: <Login/>
-            },
-            {
                 path: '/carriers',
                 element: <Carriers/>
+            },
+            {
+                path: '/blogs',
+                element: <Blogs/>
+            },
+            {
+                path: '/login',
+                element: <Login/>
             },
             {
                 path: '/signUp',
